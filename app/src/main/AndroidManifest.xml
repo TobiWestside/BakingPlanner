@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.tobiasfraenzel.backplanner">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_brot_dampf"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_brot_dampf_round"
+        android:supportsRtl="false"
+        android:theme="@style/Theme.BackPlanner">
+        <activity
+            android:name=".showPlan.ShowPlan"
+            android:exported="false" />
+        <activity
+            android:name=".editPlan.EditPlan"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

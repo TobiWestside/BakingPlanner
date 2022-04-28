@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Backplaner</string>
+    <string name="start_label_content">Start</string>
+    <string name="end_label_content">Ende</string>
+    <string name="add_step_button_content">+ Schritt</string>
+    <string name="new_step_label_placeholder">Neuer Schritt</string>
+    <string name="new_step_time_placeholder">15</string>
+    <string name="duration">%1$s</string>
+    <string name="new_plan">Neuer Plan</string>
+    <string name="min">min</string>
+    <string name="name">Name</string>
+    <string name="now">Jetzt</string>
+    <string name="add_plan">+ Plan</string>
+    <string name="edit_plan">Bearbeiten</string>
+    <string name="my_recipes">Meine Pläne</string>
+    <string name="delete_title">Plan Löschen</string>
+    <string name="delete_question">Bist du sicher, dass du den Plan löschen willst?</string>
+    <string name="h">h</string>
+    <string name="delete_step_title">Schritt löschen</string>
+    <string name="delete_step_question">Bist du sicher, dass du den Schritt löschen willst?</string>
+</resources>
