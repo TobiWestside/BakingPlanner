@@ -124,9 +124,27 @@ public class EditStepFragment extends Fragment {
                 public void afterTextChanged(Editable editable) {
                     // Convert string to date and back, to handle cases like 22:4,
                     // that will be converted to 22:04
-                    if (!plan.getStartTime().toString().equals(TimeUtils.stringToTime(startTimeInput.getText().toString()).toString())) {
-                        // Update the start time of the plan
-                        TimeUtils.calculateStartTime(plan, endTimeInput, startTimeInput);
+                    final Date calculatedStartTime = TimeUtils.calculateStartTime(plan, endTimeInput);
+                    final Date startTimeFromInput = TimeUtils.stringToTime(startTimeInput.getText().toString());
+                    final Date endTime = TimeUtils.stringToTime(endTimeInput.getText().toString());
+                    // Proceed only if the start time, the end time and the calculated start time are valid
+                    if (calculatedStartTime != null && startTimeFromInput != null && endTime != null) {
+                        // Only update the start time if
+                        // the currently set start time of the plan is different from
+                        // the time in the input
+                        // or
+                        // if the newly calculated start time is different from
+                        // the time in the input
+                        if (!plan.getStartTime().toString().equals(startTimeFromInput.toString())) {
+                            // Update the start time of the plan
+                            TimeUtils.updateStartTime(plan, endTimeInput, startTimeInput);
+                        } else if (!calculatedStartTime.toString().equals(startTimeFromInput.toString())) {
+                            final String endTimeString = TimeUtils.formatTime(endTime);
+                            if (endTimeString.equals(endTimeInput.getText().toString())) {
+                                // Update the start time of the plan
+                                TimeUtils.updateStartTime(plan, endTimeInput, startTimeInput);
+                            }
+                        }
                     }
                 }
             });

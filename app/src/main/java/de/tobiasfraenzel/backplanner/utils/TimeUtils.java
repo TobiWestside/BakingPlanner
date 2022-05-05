@@ -160,11 +160,11 @@ public class TimeUtils {
     }
 
     /*
-     * Calculate and update the start time of the plan
+     * Calculate start time of the plan
      */
-    public static void calculateStartTime(Plan plan, EditText endTimeInput, EditText startTimeInput) {
+    public static Date calculateStartTime(Plan plan, EditText endTimeInput) {
         Log.d(TAG, "calculateStartTime");
-        Log.d(TAG, "startTimeBefore: " + startTimeInput.getText().toString());
+        Log.d(TAG, "startTimeBefore: " + plan.getStartTime());
         final Calendar c = Calendar.getInstance();
         final Date endTime;
         try {
@@ -172,15 +172,24 @@ public class TimeUtils {
             if (endTime != null) {
                 c.setTime(endTime);
                 c.add(Calendar.MINUTE, plan.getDuration() * -1);
-                final String newStartTime = dateFormat.format(c.getTime());
-                if (!startTimeInput.getText().toString().equals(newStartTime)) {
-                    startTimeInput.setText(newStartTime);
-                    plan.setStartTime(c.getTime());
-                }
+                final Date startTime = c.getTime();
+                Log.d(TAG, "startTimeAfter: " + startTime);
+                return startTime;
             }
-            Log.d(TAG, "startTimeAfter: " + startTimeInput.getText().toString());
         } catch (ParseException e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void updateStartTime(Plan plan, EditText endTimeInput, EditText startTimeInput) {
+        final Date newStartTime = calculateStartTime(plan, endTimeInput);
+        if (newStartTime != null) {
+            final String newStartTimeString = dateFormat.format(newStartTime);
+            if (!startTimeInput.getText().toString().equals(newStartTimeString)) {
+                startTimeInput.setText(newStartTimeString);
+                plan.setStartTime(newStartTime);
+            }
         }
     }
 
